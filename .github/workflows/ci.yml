@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - run: ./scripts/test.sh
+
+  report:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "全 OS でテストが通りました" >> "$GITHUB_STEP_SUMMARY"
