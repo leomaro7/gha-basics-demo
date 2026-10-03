@@ -13,5 +13,5 @@ jobs:
       - name: Say hello
         run: |
           echo "Hello from ${{ github.repository }}"
-          echo "event=${{ github.evnt_name }} os=${{ runner.os }}"
+          echo "event=${{ github.event_name }} os=${{ runner.os }}"
           ls -la
