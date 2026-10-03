@@ -3,5 +3,5 @@
 set -eu
 current=$(cat VERSION)
 next=$(echo "$current" | awk -F. '{print $1"."$2"."$3+1}')
-sed -i "s/$current/$next/" VERSION
+sed -i.bak "s/$current/$next/" VERSION && rm -f VERSION.bak
 echo "$current -> $next"
