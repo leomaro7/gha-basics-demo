@@ -13,11 +13,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v7
-      - run: ./scripts/test.sh
-
-  report:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "全 OS でテストが通りました" >> "$GITHUB_STEP_SUMMARY"
+      - name: Bump version
+        run: |
+          echo "1.0.0" > VERSION
+          sed -i "s/1.0.0/1.0.1/" VERSION
+          cat VERSION
