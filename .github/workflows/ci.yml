@@ -10,11 +10,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+        node-version: [20, 22, 24]
+    runs-on: ubuntu-latest
     steps:
-      - name: Bump version
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Group numbers
         run: |
-          echo "1.0.0" > VERSION
-          sed -i.bak "s/1.0.0/1.0.1/" VERSION
-          cat VERSION
+          node -e 'console.log(JSON.stringify(Object.groupBy([1, 2, 3, 4], (n) => (n % 2 ? "odd" : "even"))))'
