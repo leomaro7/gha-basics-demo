@@ -16,5 +16,5 @@ jobs:
       - name: Bump version
         run: |
           echo "1.0.0" > VERSION
-          sed -i "s/1.0.0/1.0.1/" VERSION
+          sed -i.bak "s/1.0.0/1.0.1/" VERSION
           cat VERSION
